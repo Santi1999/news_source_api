@@ -3,8 +3,8 @@ from typing import List, Optional, Annotated
 from ..database import database
 
 router = APIRouter(
-    prefix="/posts",
-    tags=['Posts']
+    prefix="/articles",
+    tags=['Articles']
 )
 
 @router.on_event("startup")
@@ -17,5 +17,5 @@ async def shutdown_db_client():
 
 @router.get("/items/")
 async def read_items():
-    items = await database.db["articles"].find({'sources': {'$ne': []}}, {'_id': 0}).sort ( { 'created_at' : -1 } ).to_list(100)
+    items = await database.db["articles"].find({'approved': 'yes'}, {'_id': 0}).sort ( { 'created_at' : -1 } ).to_list(100)
     return items
