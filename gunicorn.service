@@ -6,9 +6,9 @@ After=network.target
 User=sanit-dev
 Group=santi-dev
 WorkingDirectory=/home/santi-dev/app/src/
-Environment="PATH=/home/santi-dev/app/api-venv/bin"
+Environment="PATH=/home/santi-dev/app/venv/bin"
 EnvironmentFile=/home/santi-dev/.env
-ExecStart=/home/santi-dev/app/api-venv/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:8000
+ExecStart=/home/santi-dev/app/venv/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:8000
 
 [Install]
 WantedBy=multi-user.target
